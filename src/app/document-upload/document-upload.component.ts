@@ -30,7 +30,14 @@ export class DocumentUploadComponent {
   }
 
   uploadFile(event: any) {
+    console.log(event, 'event');
     this.file = event.target.files[0];
+    const extension = this.file?.name.split(".").pop()
+    if (extension === 'docx'){
+      
+    } else {
+      // this.toastr.error('Please upload a valid file');
+    }
   }
 
   copyTagCode(tagCode: string) {
