@@ -1,0 +1,23 @@
+<div class="step-container">
+  <h2>Step 2: Assign Values to Tags</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tag Name</th>
+        <th>Tag Code</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (tag of tags; track tag.name) {
+        <tr>
+          <td>{{ tag.tag_name }}</td>
+          <td>{{ tag.tag_code }}</td>
+          <td><input [(ngModel)]="tag.tag_value" /></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  
+  <button (click)="submitValues(tags)">Submit</button>
+</div>

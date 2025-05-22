@@ -1,0 +1,39 @@
+<div class="step-container">
+  <h2>Step 1: Add Tag</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="input-group">
+        <label for="tagName">Tag Name:</label>
+        <input id="tagName" [(ngModel)]="tagName" (input)="updateTagCode()" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <label for="tagCode">Tag Code:</label>
+        <input id="tagCode" [value]="tagCode" disabled />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <button (click)="addTag()">Add Tag</button>
+      </div>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Tag Name</th>
+        <th>Tag Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (tag of tags; track tag.tag_code) {
+        <tr>
+          <td>{{tag.tag_name}}</td>
+          <td>{{tag.tag_code}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  
+</div>

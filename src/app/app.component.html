@@ -1,0 +1,15 @@
+<div class="app-container">
+    @if (currentStep === 1) {
+      <app-tag-input></app-tag-input>
+      <button (click)="nextStep()">Next</button>
+    }
+    @if (currentStep === 2) {
+      <app-value-input></app-value-input>
+      <button (click)="previousStep()">Previous</button>
+      <button (click)="nextStep()">Next</button>
+    }
+    @if (currentStep === 3) {
+      <app-document-upload></app-document-upload>
+      <button (click)="previousStep()">Previous</button>
+    }
+  </div>

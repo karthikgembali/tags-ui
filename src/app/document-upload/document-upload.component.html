@@ -1,0 +1,27 @@
+<div class="step-container">
+  <h2>Step 3: Upload Document</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tag Name</th>
+        <th>Tag Code</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (tag of tags; track tag.name) {
+        <tr>
+          <td>{{ tag.tag_name }}</td>
+          <td>{{ tag.tag_code }}</td>
+          <td><button (click)="copyTagCode(tag.tag_code)">Copy</button></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <input type="file" (change)="uploadFile($event)" />
+  
+  <button (click)="processFile()">Process File</button>
+  <button (click)="previewFile()">Preview</button>
+  <button (click)="downloadFile()">Download</button>
+</div>

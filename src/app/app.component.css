@@ -1,0 +1,146 @@
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+/* Container and general layout */
+.step-container {
+  max-width: 720px;
+  margin: 30px auto;
+  padding: 30px 40px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Step title */
+h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #1a73e8;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* Input group styling */
+.input-group {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* Inputs */
+input {
+  font-size: 1rem;
+  padding: 12px 16px;
+  border: 1.8px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 2px;
+  outline-color: transparent;
+  background-color: #fdfdfd;
+  color: #222;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
+  outline-color: #1a73e8;
+  background-color: #fff;
+}
+
+/* Disabled input style */
+input[disabled] {
+  background-color: #f5f6f8;
+  color: #888;
+  border-color: #bbb;
+  cursor: not-allowed;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  margin-top: 18px;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+}
+
+/* Table header */
+th {
+  text-align: left;
+  padding: 14px 20px;
+  background-color: #f1f3f4;
+  color: #555;
+  font-weight: 700;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  user-select: none;
+}
+
+/* Table body cells */
+td {
+  padding: 14px 20px;
+  background-color: #ffffff;
+  color: #333;
+  font-weight: 500;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+/* Table rows with spacing */
+tbody tr {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+  border-radius: 8px;
+  transition: background-color 0.25s ease;
+}
+
+/* Hover effect on table rows */
+tbody tr:hover {
+  background-color: #e8f0fe;
+  cursor: pointer;
+}
+
+/* Button styling */
+button {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(26 115 232 / 0.4);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+  background-color: #155ab6;
+  box-shadow: 0 6px 16px rgb(21 90 182 / 0.55);
+}
+
+button:active {
+  background-color: #104593;
+}
+
+
