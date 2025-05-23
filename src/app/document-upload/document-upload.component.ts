@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TagsService } from '../tags.service';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 @Component({
   selector: 'app-document-upload',
@@ -11,10 +12,12 @@ declare var $: any;
   standalone: true
 })
 export class DocumentUploadComponent {
-  constructor(private tagsService: TagsService) {}
+  constructor(private tagsService: TagsService, private toastr: ToastrService) {}
 
-  file: File | null = null;
+  file: any;
   tags: any[] = [];
+  formData: FormData = new FormData();
+  processedFile: any = '';
 
   ngOnInit(){
     this.fetchTags();
@@ -29,19 +32,41 @@ export class DocumentUploadComponent {
     })
   }
 
-  uploadFile(event: any) {
+  handleFile(event: any) {
     console.log(event, 'event');
-    this.file = event.target.files[0];
-    const extension = this.file?.name.split(".").pop()
-    if (extension === 'docx'){
-      
+    if (event && event.target && event.target.files && event.target.files.length > 0){
+      const extension = event.target.files[0]?.name.split(".").pop()
+      if (extension === 'docx'){
+        this.file = event.target.files[0];
+      } else {
+        this.toastr.error('Please upload a valid file');
+      }
     } else {
-      // this.toastr.error('Please upload a valid file');
+      this.toastr.error('Please upload a file');
+    }
+  }
+
+  uploadFile() {
+    if (this.file){
+      this.formData.append('file', this.file);
+      this.tagsService.uploadFile(this.formData).subscribe((response: any) => {
+        console.log(response, 'response after uploading file');
+        this.processedFile = '';
+        this.formData = new FormData();
+        if (response && response.success){
+          this.processedFile = response.buffer
+          this.toastr.success('File processed successfully');
+        } else {
+          this.toastr.error('Failed to upload file');
+        }
+      })
+    } else {
+      this.toastr.error('Please upload a file');
     }
   }
 
   copyTagCode(tagCode: string) {
-    const value = `{{ ${tagCode} }}`
+    const value = `<${tagCode}>`
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(value).then(() => {
         alert('Copied to clipboard: ' + value);
@@ -66,17 +91,10 @@ export class DocumentUploadComponent {
     }
   }
 
-  processFile() {
-    // Logic to process the uploaded file
-  }
-
   previewFile() {
     // Logic to preview the uploaded file
   }
 
-  downloadFile() {
-    // Logic to download the processed file
-  }
 }
 
 

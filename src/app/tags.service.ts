@@ -21,4 +21,8 @@ export class TagsService {
   addTagValues(tagValues: any){
     return this.http.post(`${environment.apiUrl}/addTagValues`, tagValues);
   }
+
+  uploadFile(formData: FormData){
+    return this.http.post(`${environment.apiUrl}/replaceTagsInFile`, formData);
+  }
 }

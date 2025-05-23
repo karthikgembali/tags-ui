@@ -19,9 +19,8 @@
       }
     </tbody>
   </table>
-  <input type="file" (change)="uploadFile($event)" />
+  <input type="file" (change)="handleFile($event)" />
   
-  <button (click)="processFile()">Process File</button>
-  <button (click)="previewFile()">Preview</button>
-  <button (click)="downloadFile()">Download</button>
+  <button (click)="uploadFile()">Process File</button>
+  <button (click)="previewFile()" [disabled]="!processedFile">Preview</button>
 </div>

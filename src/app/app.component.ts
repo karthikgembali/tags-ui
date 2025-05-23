@@ -10,6 +10,7 @@ import { DocumentUploadComponent } from './document-upload/document-upload.compo
   styleUrl: './app.component.css',
   standalone: true
 })
+
 export class AppComponent {
   title = 'UI';
   currentStep: number = 1;
