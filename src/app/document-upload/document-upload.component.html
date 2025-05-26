@@ -22,5 +22,21 @@
   <input type="file" (change)="handleFile($event)" />
   
   <button (click)="uploadFile()">Process File</button>
-  <button (click)="previewFile()" [disabled]="!processedFile">Preview</button>
+  <button (click)="previewFile()" [disabled]="!pdfUrl">Preview</button>
+  <div *ngIf="openModal && pdfUrl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Preview</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ngx-extended-pdf-viewer [src]="pdfUrl" [height]="'80vh'"
+        [useBrowserLocale]="true"
+        [textLayer]="true"
+        [showToolbar]="true"></ngx-extended-pdf-viewer>
+      </div>
+    </div>
+  </div>
 </div>

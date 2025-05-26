@@ -1,23 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TagsService } from '../tags.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 declare var $: any;
 @Component({
   selector: 'app-document-upload',
   templateUrl: './document-upload.component.html',
   styleUrls: ['../app.component.css'],
-  imports: [FormsModule, CommonModule],
-  standalone: true
+  imports: [FormsModule, CommonModule, NgxExtendedPdfViewerModule],
+  standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DocumentUploadComponent {
+  openModal: boolean = false;
   constructor(private tagsService: TagsService, private toastr: ToastrService) {}
 
   file: any;
   tags: any[] = [];
   formData: FormData = new FormData();
-  processedFile: any = '';
+  pdfUrl: string | null = null;
 
   ngOnInit(){
     this.fetchTags();
@@ -51,10 +54,10 @@ export class DocumentUploadComponent {
       this.formData.append('file', this.file);
       this.tagsService.uploadFile(this.formData).subscribe((response: any) => {
         console.log(response, 'response after uploading file');
-        this.processedFile = '';
+        this.pdfUrl = '';
         this.formData = new FormData();
         if (response && response.success){
-          this.processedFile = response.buffer
+          this.pdfUrl = response.dataUrl
           this.toastr.success('File processed successfully');
         } else {
           this.toastr.error('Failed to upload file');
@@ -92,7 +95,12 @@ export class DocumentUploadComponent {
   }
 
   previewFile() {
+    this.openModal = true
     // Logic to preview the uploaded file
+  }
+
+  closeModal() {
+    this.openModal = false;
   }
 
 }
