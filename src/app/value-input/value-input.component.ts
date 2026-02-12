@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TagsService } from '../tags.service';
-
+import { ToastrService } from 'ngx-toastr';
 interface Tag {
   name: string;
   code: string;
@@ -20,7 +20,7 @@ interface Tag {
 export class ValueInputComponent {
   tags: any[] = [];
 
-  constructor(private router: Router, private tagsService: TagsService) {
+  constructor(private router: Router, private tagsService: TagsService, private toastr: ToastrService) {
   }
 
   ngOnInit(){
@@ -49,6 +49,12 @@ export class ValueInputComponent {
       console.log(response, 'response after submitting values')
       if (response && response.success){
         this.fetchTags()
+        this.toastr.success('Values submitted successfully');
+      } else {
+        this.toastr.error(response.message);
+      }
+      (error: any) => {
+        this.toastr.error('Something went wrong');
       }
     })
   }

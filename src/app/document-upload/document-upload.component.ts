@@ -31,6 +31,8 @@ export class DocumentUploadComponent {
       console.log(response, 'response after fetching tags');
       if (response && response.success){
         this.tags = response.data;
+      } else {
+        this.toastr.error(response.message);
       }
     })
   }
@@ -52,6 +54,7 @@ export class DocumentUploadComponent {
   uploadFile() {
     if (this.file){
       this.formData.append('file', this.file);
+      console.log(this.formData, 'formData');
       this.tagsService.uploadFile(this.formData).subscribe((response: any) => {
         console.log(response, 'response after uploading file');
         this.pdfUrl = '';
@@ -62,6 +65,9 @@ export class DocumentUploadComponent {
         } else {
           this.toastr.error('Failed to upload file');
         }
+      }, (error: any) => {
+        console.error(error);
+        this.toastr.error('Something went wrong');
       })
     } else {
       this.toastr.error('Please upload a file');

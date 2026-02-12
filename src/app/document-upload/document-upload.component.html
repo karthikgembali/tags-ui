@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (tag of tags; track tag.name) {
+      @for (tag of tags; track tag.tag_code) {
         <tr>
           <td>{{ tag.tag_name }}</td>
           <td>{{ tag.tag_code }}</td>
@@ -23,7 +23,7 @@
   
   <button (click)="uploadFile()">Process File</button>
   <button (click)="previewFile()" [disabled]="!pdfUrl">Preview</button>
-  <div *ngIf="openModal && pdfUrl">
+  <div *ngIf="openModal && pdfUrl" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Preview</h5>
@@ -32,10 +32,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <ngx-extended-pdf-viewer [src]="pdfUrl" [height]="'80vh'"
-        [useBrowserLocale]="true"
-        [textLayer]="true"
-        [showToolbar]="true"></ngx-extended-pdf-viewer>
+        <ngx-extended-pdf-viewer
+          [base64Src]="pdfUrl"
+          [height]="'80vh'"
+          [useBrowserLocale]="true"
+          [textLayer]="true"
+          [showToolbar]="true">
+        </ngx-extended-pdf-viewer>
       </div>
     </div>
   </div>

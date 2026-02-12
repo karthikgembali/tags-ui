@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { TagsService } from '../tags.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tag-input',
@@ -14,7 +14,7 @@ import { TagsService } from '../tags.service';
 })
 export class TagInputComponent {
 
-  constructor(private tagsService: TagsService) {}
+  constructor(private tagsService: TagsService, private toastr: ToastrService) {}
   tagName: string = '';
   tagCode: string = '';
   tags: any[] = [];
@@ -47,6 +47,11 @@ export class TagInputComponent {
       console.log(response, 'response after fetching tags');
       if (response && response.success){
         this.tags = response.data;
+      } else {
+        this.toastr.error(response.message);
+      }
+      (error: any) => {
+        this.toastr.error('Something went wrong');
       }
     })
   }
