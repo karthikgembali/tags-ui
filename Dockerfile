@@ -6,5 +6,5 @@ COPY . .
 RUN npm run build --prod
 
 FROM nginx:alpine
-COPY --from=build /app/dist/tags-ui /usr/share/nginx/html
-EXPOSE 4200
+COPY --from=build /app/dist/tags-ui/browser /usr/share/nginx/html
+EXPOSE 80
