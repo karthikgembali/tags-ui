@@ -7,4 +7,4 @@ RUN npm run build --prod
 
 FROM nginx:alpine
 COPY --from=build /app/dist/tags-ui /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 4200
