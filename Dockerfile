@@ -7,4 +7,5 @@ RUN npm run build --prod
 
 FROM nginx:alpine
 COPY --from=build /app/dist/tags-ui/browser /usr/share/nginx/html
+RUN mv /usr/share/nginx/html/index.csr.html /usr/share/nginx/html/index.html
 EXPOSE 80
